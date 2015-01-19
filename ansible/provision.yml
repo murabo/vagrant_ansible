@@ -1,0 +1,23 @@
+---
+- hosts: staging
+  sudo: true
+  roles:
+    - common
+    - git
+    - nginx
+    - python
+  vars:
+    local:
+      dir: /usr/local
+      src: /usr/local/src
+    #unixusers:
+    #  - username: webapp
+    #    shell: /bin/bash
+    #    group: webapp
+    #    groups: webapp
+    #    home: /home/webapp
+    #    password: $1$SomeSalt$A4dqtxmVtUL1R/NjQ.zWO1
+    python:
+      version: 2.7.6
+    nginx:
+      version: 1.7.4

@@ -1,0 +1,5 @@
+[staging]
+116.118.231.2
+
+[all:vars]
+ansible_ssh_user=root

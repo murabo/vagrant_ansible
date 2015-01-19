@@ -1,0 +1,28 @@
+---
+- name: 'install Development tools'
+  yum: name='@Development tools' state=present
+
+- name: 'install tools'
+  yum: name={{ item }} state=present
+  with_items:
+    - curl-devel
+    - expat-devel
+    - gettext-devel
+    - zlib-devel
+    - bzip2-devel
+    - openssl-devel
+    - ncurses-devel
+    - sqlite-devel
+    - readline-devel
+    - tk-devel
+    - perl-ExtUtils-MakeMaker
+    - wget
+
+- name: 'user bashprofile'
+  template: src=bash_profile.j2 dest=/home/vagrant/.bash_profile owner=vagrant group=vagrant mode=0755
+
+- name: 'user bashrc'
+  template: src=bashrc.j2 dest=/home/vagrant/.bashrc owner=vagrant group=vagrant mode=0755
+
+- name: 'copy id_rsa'
+  copy: src=~/.ssh/id_rsa dest=/home/vagrant/.ssh/id_rsa

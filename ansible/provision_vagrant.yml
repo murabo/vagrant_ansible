@@ -1,0 +1,17 @@
+---
+- hosts: staging
+  sudo: true
+  roles:
+    - common
+    - git
+    - nginx
+    - python
+    - jenkins
+  vars:
+    local:
+      dir: /usr/local
+      src: /usr/local/src
+    python:
+      version: 2.7.6
+    nginx:
+      version: 1.7.4

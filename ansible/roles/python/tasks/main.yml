@@ -1,0 +1,37 @@
+---
+- name: install pyenv 1
+  shell: git clone git://github.com/yyuu/pyenv.git /home/vagrant/.pyenv creates=/home/vagrant/.pyenv
+- name: install pyenv 2
+  shell: git clone git://github.com/yyuu/pyenv-doctor.git chdir=/home/vagrant/.pyenv/plugins creates=/home/vagrant/.pyenv/plugins/pyenv-doctor
+- name: install pyenv 3
+  shell: git clone git://github.com/yyuu/pyenv-installer.git chdir=/home/vagrant/.pyenv/plugins creates=/home/vagrant/.pyenv/plugins/pyenv-installer
+- name: install pyenv 4
+  shell: git clone git://github.com/yyuu/pyenv-pip-rehash.git chdir=/home/vagrant/.pyenv/plugins creates=/home/vagrant/.pyenv/plugins/pyenv-pip-rehash
+- name: install pyenv 5
+  shell: git clone git://github.com/yyuu/pyenv-update.git chdir=/home/vagrant/.pyenv/plugins creates=/home/vagrant/.pyenv/plugins/pyenv-update
+- name: install pyenv 6
+  shell: git clone git://github.com/yyuu/pyenv-virtualenv.git chdir=/home/vagrant/.pyenv/plugins creates=/home/vagrant/.pyenv/plugins/pyenv-virtualenv
+- name: install pyenv 7
+  shell: git clone git://github.com/yyuu/pyenv-which-ext.git chdir=/home/vagrant/.pyenv/plugins creates=/home/vagrant/.pyenv/plugins/pyenv-which-ext
+
+- name: pyenv dir chmod
+  shell: chown -R vagrant:vagrant /home/vagrant/.pyenv
+
+- name: pyenv update
+  sudo: no
+  shell: |
+    source ~/.bash_profile
+    pyenv update
+
+- name: install python {{ python.version }}
+  sudo: no
+  shell: souce ~/.bash_profile
+  shell: pyenv install {{ python.version }} creates=/home/vagrant/.pyenv/versions/{{ python.version }}
+
+- name: pyenv rehash
+  sudo: no
+  shell: pyenv rehash
+
+- name: pyenv global
+  sudo: no
+  shell: pyenv global {{ python.version }}

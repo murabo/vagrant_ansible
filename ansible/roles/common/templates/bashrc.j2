@@ -1,0 +1,15 @@
+if [ -f /etc/bashrc ]; then
+  . /etc/bashrc
+fi
+
+export PATH=/usr/local/bin:${PATH}
+
+# pyenv
+export PYENV_ROOT="${HOME}/.pyenv"
+if [ -d "${PYENV_ROOT}" ]; then
+    export PATH="${PYENV_ROOT}/bin:${PATH}"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
+
+cd ${HOME}
